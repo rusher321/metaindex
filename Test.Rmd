@@ -1,0 +1,66 @@
+---
+title: "Meta index for everyone"
+output: html_notebook
+---
+
+### load package 
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(curatedMetagenomicData)
+library(curatedMetagenomicAnalyses)
+library(dplyr)
+library(rmeta) # this is from my package
+library(ggplot2)
+```
+
+### generate the test data 
+
+```{r, warning=F, echo=F}
+## here down jie's 17 metagenome data 
+jie <- curatedMetagenomicData("2021-10-14.JieZ_2017.relative_abundance", dryrun = F)
+pro <- assay(jie[[1]])
+## metadata 
+samples <- curatedMetagenomicData::sampleMetadata
+testData <- samples[samples$study_name == "JieZ_2017", ]
+rownames(testData) <- testData$sample_id
+
+
+```
+
+### Alpha index 
+
+```{r}
+
+
+
+```
+
+### Beta index 
+
+```{r}
+
+
+
+```
+
+### Index based on graph 
+
+```{r}
+
+
+
+```
+
+### Microbial phenotype 
+
+```{r}
+
+
+
+```
+
+### 
+
+
+
