@@ -11,15 +11,24 @@ Mdiversity(x, index = "shannon", margin = 1, ...)
 
 \item{index}{diversity index, one of "richness", "shannon", "simpson",
 "invsimpson","uniquess_jaccard", "uniquess_bray", "uniquess_aitchison",
-"uniquess_kendel"; "all" indicates caluated all these index}
+"uniquess_kendel"; "all" indicates calculated all these index}
 
 \item{margin}{row or col}
 
 \item{...}{lev parameter for uniquess function, indicates threshold to compute the uniquess}
 }
 \value{
-data.frame
+The function returns an data.frame with the integrated ecological dieversity index
 }
 \description{
 Integrated ecological diversity indexes
+}
+\examples{
+data(sp_data)
+n100 <- sp_data[,1:100]
+n100_t <- n100/colSums(n100)
+Diversity <- Mdiversity(n100_t, index = "all", margin =2 )
+}
+\author{
+Huahui Ren
 }

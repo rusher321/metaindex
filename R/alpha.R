@@ -36,8 +36,8 @@ uniquess_bray <- function(x, lev = "min"){
   if(lev == "min"){
     bray_uniq <- bray_sort[2, ]
   }else{
-    index <- round(nrwo(x)*lev, 0)
-    bray_uniq <- bray_sort[index, ]
+    index_s <- round(nrwo(x)*lev, 0)
+    bray_uniq <- bray_sort[index_s, ]
   }
   return(bray_uniq)
 }
@@ -45,12 +45,13 @@ uniquess_bray <- function(x, lev = "min"){
 uniquess_jaccard <- function(x, lev = "min"){
   jac_dist <- as.matrix(vegan::vegdist(x, method = "jaccard"))
   jac_sort <- apply(jac_dist, 2, sort)
-  if(lev == "min")
+  if(lev == "min"){
     jac_uniq <- jac_sort[2, ]
-  else
+  }else{
     index <- round(nrwo(x)*lev, 0)
     jac_uniq <- jac_sort[index, ]
-  return(bray_uniq)
+  }
+  return(jac_uniq)
 }
 
 uniquess_aitchison <- function(x, lev = "min"){
@@ -64,13 +65,13 @@ uniquess_aitchison <- function(x, lev = "min"){
   ### distance
   ait_dist <- as.matrix(vegan::vegdist(x_clr, method = "euclidean"))
   ait_sort <- apply(ait_dist, 2, sort)
-  if(lev == "min")
+  if(lev == "min"){
     ait_uniq <- ait_sort[2, ]
-  else
+  }else{
     index <- round(nrwo(x)*lev, 0)
     ait_uniq <- ait_sort[index, ]
+  }
   return(ait_uniq)
-
 }
 
 uniquess_kendall <- function(x, lev = "min", clr = T){
@@ -81,23 +82,17 @@ uniquess_kendall <- function(x, lev = "min", clr = T){
     min_x <- min(x[x!=0])
     x[x==0] <- min_x
     x_clr <- vegan::decostand(x, method = "clr", pseudocount = 0)
-    kendel_uniq <- 1-pcaPP::cor.fk(x_clr)
+    kendel_uniq <- 1-pcaPP::cor.fk(t(x_clr))
   }else{
-    kendel_uniq <- 1-pcaPP::cor.fk(x)
+    kendel_uniq <- 1-pcaPP::cor.fk(t(x))
   }
   kendel_sort <- apply(kendel_uniq, 2, sort)
-  if(lev == "min")
+  if(lev == "min"){
     kendel_uniq <- kendel_sort[2, ]
-  else
+  }else{
     index <- round(nrwo(x)*lev, 0)
     kendel_uniq <- kendel_sort[index, ]
+  }
   return(kendel_uniq)
-
-}
-
-phenindex <- function(x, pos_spe, neg_spe){
-
-
-
 
 }
